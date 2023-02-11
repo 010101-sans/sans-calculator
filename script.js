@@ -32,13 +32,19 @@ buttons.forEach((button) => {
       // parseFloat() : to parse a string (present on screen) and return a floating point number
 
       switch (currentOperator) {
-        case "+"  : currentInput = parseFloat(previousInput) + parseFloat(currentInput);                break;
-        case "-"  : currentInput = parseFloat(previousInput) - parseFloat(currentInput);                break;
-        case "*"  : currentInput = parseFloat(previousInput) * parseFloat(currentInput);                break;
-        case "/"  : currentInput = (parseFloat(previousInput) / parseFloat(currentInput)).toFixed(2);   break;
-        case "%"  : currentInput = parseFloat(previousInput) % parseFloat(currentInput);                break;
-        case "^2" : currentInput = Math.pow(parseFloat(previousInput), 2).toFixed(2);                   break;
+        case "+"  : currentInput = parseFloat(previousInput) + parseFloat(currentInput);     break;
+        case "-"  : currentInput = parseFloat(previousInput) - parseFloat(currentInput);     break;
+        case "*"  : currentInput = parseFloat(previousInput) * parseFloat(currentInput);     break;
+        case "/"  : currentInput = parseFloat(previousInput) / parseFloat(currentInput);     break;
+        case "%"  : currentInput = parseFloat(previousInput) % parseFloat(currentInput);     break;
+        case "^2" : currentInput = Math.pow(parseFloat(previousInput), 2);                   break;
       }
+      
+      // To limit currentInput to two decimal places if it contains a decimal point..
+      if (currentInput.toString().includes(".")) {
+        currentInput = parseFloat(currentInput).toFixed(2);
+      }
+      
       // Reset the previous input and current operator after performing the operation
       previousInput = "0";
       currentOperator = "";
